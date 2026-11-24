@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrandStay | Hotel Management</title>
+<style>
+:root{--navy:#14243a;--navy2:#203955;--gold:#c99b52;--bg:#f4f6f9;--muted:#748094;--line:#e7ebf0;--white:#fff;--green:#16865b;--red:#c34d4d}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:#243247}
+button,input,select{font:inherit}button{cursor:pointer}
+.app{display:flex;min-height:100vh}.sidebar{width:245px;background:var(--navy);color:#fff;padding:26px 18px;display:flex;flex-direction:column;flex-shrink:0}
+.brand{font-size:23px;font-weight:800;letter-spacing:.3px;padding:0 12px 30px}.brand span{color:var(--gold)}.brand small{display:block;font-size:10px;letter-spacing:3px;color:#aeb9c8;margin-top:5px;font-weight:500}
+.nav-label{font-size:10px;color:#8e9db0;letter-spacing:2px;padding:12px}.nav button{display:flex;gap:13px;align-items:center;width:100%;border:0;background:transparent;color:#c7d0dc;text-align:left;padding:13px 14px;border-radius:9px;margin:3px 0;font-size:14px}.nav button.active,.nav button:hover{background:#2b4059;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--gold)}.nav .ico{width:20px;text-align:center;font-size:17px}.side-bottom{margin-top:auto;color:#8e9db0;font-size:12px;padding:15px 12px;border-top:1px solid #34465b}
+.main{flex:1;min-width:0}.topbar{height:78px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px}.crumb{font-size:13px;color:var(--muted)}.crumb b{color:#243247}.profile{display:flex;align-items:center;gap:12px;font-size:13px}.avatar{width:37px;height:37px;border-radius:50%;background:#f1e5d1;color:#805d2d;display:grid;place-items:center;font-weight:800}
+.content{padding:30px 34px;max-width:1500px;margin:auto}.page-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:25px;gap:15px}.eyebrow{font-size:11px;color:var(--gold);font-weight:800;letter-spacing:2px;text-transform:uppercase}.page-head h1{margin:7px 0 6px;font-size:27px;color:var(--navy)}.sub{color:var(--muted);font-size:13px}.btn{border:0;border-radius:8px;padding:11px 16px;font-weight:700;font-size:13px}.primary{background:var(--navy);color:white}.primary:hover{background:var(--navy2)}.gold{background:var(--gold);color:#fff}.light{background:#edf1f5;color:#34445a}.danger{background:#fae9e9;color:var(--red)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:23px}.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:19px 20px;box-shadow:0 3px 12px #172b4207}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.stat-icon{width:35px;height:35px;border-radius:10px;background:#f5efe5;color:#a87935;display:grid;place-items:center;font-size:17px}.stat strong{display:block;font-size:27px;color:var(--navy);margin:13px 0 3px}.stat small{color:var(--muted);font-size:11px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:21px;margin-bottom:20px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px}.panel h3{margin:0;color:var(--navy);font-size:16px}.panel-head small{color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:18px}.room-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.room{border:1px solid var(--line);border-radius:11px;overflow:hidden}.room-banner{height:105px;background:linear-gradient(135deg,#d9c5a5,#8d9ca8);display:flex;align-items:center;justify-content:center;font-size:40px}.room-info{padding:13px}.room-info b{font-size:14px;color:var(--navy)}.room-info p{margin:6px 0 12px;color:var(--muted);font-size:12px}.room-foot{display:flex;justify-content:space-between;align-items:center;font-size:12px}.price{font-weight:800;color:var(--navy)}
+.pill{display:inline-block;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:800}.available{background:#e4f5ed;color:var(--green)}.occupied{background:#fceaea;color:var(--red)}.reserved{background:#fff3dc;color:#a66c18}
+table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:var(--muted);font-weight:700;background:#f8fafc;padding:12px 10px}td{padding:13px 10px;border-top:1px solid var(--line)}.empty{text-align:center;color:var(--muted);padding:28px}
+.page{display:none}.page.active{display:block}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field label{display:block;font-size:12px;font-weight:700;color:#536176;margin-bottom:7px}.field input,.field select{width:100%;border:1px solid #dce2e9;border-radius:8px;padding:11px 12px;outline:none;background:#fff;color:#243247}.field input:focus,.field select:focus{border-color:var(--gold)}.form-actions{display:flex;gap:10px;margin-top:18px}.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:15px}.toolbar input{border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:220px}.notice{padding:12px 14px;border-radius:8px;background:#f8f2e8;color:#80602f;font-size:12px;margin-bottom:18px}
+.toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:white;padding:13px 18px;border-radius:9px;box-shadow:0 8px 25px #0002;display:none;z-index:10;font-size:13px}
+@media(max-width:950px){.sidebar{width:205px}.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.room-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.app{display:block}.sidebar{width:100%;padding:15px}.brand{padding:0 8px 12px}.nav{display:flex;overflow:auto}.nav-label,.side-bottom{display:none}.nav button{white-space:nowrap;width:auto;padding:10px}.topbar{height:58px;padding:0 17px}.content{padding:20px 15px}.stats{gap:9px}.stat{padding:13px}.stat strong{font-size:22px}.room-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.page-head h1{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">GRAND<span>STAY</span><small>HOTEL MANAGEMENT</small></div>
+  <div class="nav-label">MAIN MENU</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="ico">▦</span> Dashboard</button>
+    <button data-page="rooms"><span class="ico">▤</span> Rooms</button>
+    <button data-page="customers"><span class="ico">♙</span> Customers</button>
+    <button data-page="bookings"><span class="ico">▣</span> Bookings</button>
+    <button data-page="billing"><span class="ico">₹</span> Billing</button>
+  </nav>
+  <div class="side-bottom">GrandStay Hotel<br>Management Portal · v1.0</div>
+</aside>
+<main class="main">
+<header class="topbar"><div class="crumb">Workspace / <b id="crumb">Dashboard</b></div><div class="profile"><div><b>Administrator</b><br><span style="color:#8994a3;font-size:11px">Hotel Manager</span></div><div class="avatar">A</div></div></header>
+<div class="content">
+<section class="page active" id="dashboard">
+  <div class="page-head"><div><div class="eyebrow">OVERVIEW</div><h1>Good day, Admin</h1><div class="sub">Here's what's happening at your hotel today.</div></div><button class="btn primary" onclick="showPage('newbooking')">＋ New Booking</button></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-top">Total Rooms <span class="stat-icon">▤</span></div><strong id="totalRooms">5</strong><small>Across all room types</small></div>
+    <div class="stat"><div class="stat-top">Available Rooms <span class="stat-icon">✓</span></div><strong id="availableRooms">5</strong><small>Ready for reservations</small></div>
+    <div class="stat"><div class="stat-top">Total Customers <span class="stat-icon">♙</span></div><strong id="totalCustomers">0</strong><small>Registered guests</small></div>
+    <div class="stat"><div class="stat-top">Total Bookings <span class="stat-icon">▣</span></div><strong id="totalBookings">0</strong><small>Reservations recorded</small></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><div class="panel-head"><h3>Room Availability</h3><small>Live status</small></div><div class="room-grid" id="dashRooms"></div></div>
+    <div class="panel"><div class="panel-head"><h3>Recent Bookings</h3><small>Latest activity</small></div><div id="recentBookings"></div></div>
+  </div>
+</section>
+<section class="page" id="rooms">
+  <div class="page-head"><div><div class="eyebrow">ACCOMMODATION</div><h1>Room Management</h1><div class="sub">View room types, rates and availability.</div></div></div>
+  <div class="panel"><div class="panel-head"><h3>All Rooms</h3><small>5 rooms listed</small></div><div class="room-grid" id="allRooms"></div></div>
+</section>
+<section class="page" id="customers">
+  <div class="page-head"><div><div class="eyebrow">GUEST DIRECTORY</div><h1>Customers</h1><div class="sub">Register and manage hotel guests.</div></div><button class="btn primary" onclick="document.getElementById('customerForm').scrollIntoView({behavior:'smooth'})">＋ Add Customer</button></div>
+  <div class="panel"><div class="panel-head"><h3>Register Customer</h3></div><form id="customerForm"><div class="form-grid">
+    <div class="field"><label>Customer ID</label><input id="cId" type="number" min="1" required placeholder="e.g. 1"></div>
+    <div class="field"><label>Full Name</label><input id="cName" required placeholder="Enter customer name"></div>
+    <div class="field"><label>Phone Number</label><input id="cPhone" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number"></div>
+    <div class="field"><label>Email Address</label><input id="cEmail" type="email" required placeholder="name@example.com"></div>
+  </div><div class="form-actions"><button class="btn primary">Save Customer</button><button type="reset" class="btn light">Clear</button></div></form></div>
+  <div class="panel"><div class="panel-head"><h3>Customer List</h3></div><div id="customerTable"></div></div>
+</section>
+<section class="page" id="newbooking">
+  <div class="page-head"><div><div class="eyebrow">RESERVATIONS</div><h1>Create a Booking</h1><div class="sub">Assign a room to a registered customer.</div></div></div>
+  <div class="panel"><div class="notice">Please register the customer before creating a booking. Only available rooms can be selected.</div><form id="bookingForm"><div class="form-grid">
+    <div class="field"><label>Booking ID</label><input id="bId" type="number" min="1" required placeholder="e.g. 101"></div>
+    <div class="field"><label>Customer</label><select id="bCustomer" required><option value="">Select customer</option></select></div>
+    <div class="field"><label>Available Room</label><select id="bRoom" required><option value="">Select room</option></select></div>
+    <div class="field"><label>Number of Days</label><input id="bDays" type="number" min="1" required value="1"></div>
+  </div><div id="estimate" class="notice" style="margin-top:16px">Select a room and duration to view the estimated bill.</div><div class="form-actions"><button class="btn primary">Confirm Booking</button><button type="reset" class="btn light">Clear</button></div></form></div>
+</section>
+<section class="page" id="bookings">
+  <div class="page-head"><div><div class="eyebrow">RESERVATIONS</div><h1>Booking Management</h1><div class="sub">Track reservations, check-ins and check-outs.</div></div><button class="btn primary" onclick="showPage('newbooking')">＋ New Booking</button></div>
+  <div class="panel"><div class="panel-head"><h3>All Bookings</h3></div><div id="bookingTable"></div></div>
+</section>
+<section class="page" id="billing">
+  <div class="page-head"><div><div class="eyebrow">PAYMENTS</div><h1>Billing & Invoices</h1><div class="sub">Review booking charges and final bills.</div></div></div>
+  <div class="panel"><div class="panel-head"><h3>Billing Records</h3></div><div id="billingTable"></div></div>
+</section>
+</div>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const initialRooms=[
+ {no:101,type:"Single",price:1000,available:true,icon:"🛏️"},
+ {no:102,type:"Double",price:1500,available:true,icon:"🛌"},
+ {no:103,type:"Deluxe",price:2500,available:true,icon:"✨"},
+ {no:104,type:"Suite",price:4000,available:true,icon:"🏨"},
+ {no:105,type:"Double",price:1500,available:true,icon:"🛏️"}
+];
+let rooms=JSON.parse(localStorage.getItem("gs_rooms")||"null")||initialRooms;
+let customers=JSON.parse(localStorage.getItem("gs_customers")||"[]");
+let bookings=JSON.parse(localStorage.getItem("gs_bookings")||"[]");
+const save=()=>{localStorage.setItem("gs_rooms",JSON.stringify(rooms));localStorage.setItem("gs_customers",JSON.stringify(customers));localStorage.setItem("gs_bookings",JSON.stringify(bookings));};
+const money=n=>"₹"+Number(n).toLocaleString("en-IN");
+function toast(msg){let t=document.getElementById("toast");t.textContent=msg;t.style.display="block";setTimeout(()=>t.style.display="none",2600)}
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));let target=document.getElementById(id);if(!target)target=document.getElementById("dashboard");target.classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));document.getElementById("crumb").textContent=target.querySelector("h1")?.textContent||"Dashboard";render()}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function roomCard(r){return `<div class="room"><div class="room-banner">${r.icon}</div><div class="room-info"><b>Room ${r.no} · ${r.type}</b><p>${r.type} accommodation</p><div class="room-foot"><span class="price">${money(r.price)} <small style="color:#8994a3;font-weight:400">/ night</small></span><span class="pill ${r.available?"available":"occupied"}">${r.available?"Available":"Occupied"}</span></div></div></div>`}
+function table(headers,rows){if(!rows.length)return '<div class="empty">No records yet. Add your first record to get started.</div>';return `<div style="overflow:auto"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`}
+function render(){
+document.getElementById("totalRooms").textContent=rooms.length;document.getElementById("availableRooms").textContent=rooms.filter(r=>r.available).length;document.getElementById("totalCustomers").textContent=customers.length;document.getElementById("totalBookings").textContent=bookings.length;
+document.getElementById("dashRooms").innerHTML=rooms.slice(0,3).map(roomCard).join("");document.getElementById("allRooms").innerHTML=rooms.map(roomCard).join("");
+document.getElementById("customerTable").innerHTML=table(["ID","CUSTOMER","PHONE","EMAIL"],customers.map(c=>`<tr><td>${c.id}</td><td><b>${esc(c.name)}</b></td><td>${esc(c.phone)}</td><td>${esc(c.email)}</td></tr>`));
+const bookingRows=bookings.slice().reverse().map(b=>`<tr><td>#${b.id}</td><td>${esc(b.name)}</td><td>${b.room}</td><td>${b.days} days</td><td>${money(b.total)}</td><td><span class="pill ${b.status==="Checked Out"?"available":b.status==="Checked In"?"reserved":"occupied"}">${b.status}</span></td><td>${b.status==="Booked"?`<button class="btn light" onclick="checkIn(${b.id})">Check in</button>`:b.status==="Checked In"?`<button class="btn light" onclick="checkOut(${b.id})">Check out</button>`:"—"}</td></tr>`);
+document.getElementById("bookingTable").innerHTML=table(["BOOKING","CUSTOMER","ROOM","DURATION","TOTAL","STATUS","ACTION"],bookingRows);
+document.getElementById("recentBookings").innerHTML=table(["GUEST","ROOM","TOTAL"],bookings.slice(-4).reverse().map(b=>`<tr><td>${esc(b.name)}</td><td>${b.room}</td><td><b>${money(b.total)}</b></td></tr>`));
+document.getElementById("billingTable").innerHTML=table(["BOOKING ID","CUSTOMER","ROOM","DAYS","AMOUNT","STATUS"],bookings.map(b=>`<tr><td>#${b.id}</td><td>${esc(b.name)}</td><td>${b.room}</td><td>${b.days}</td><td><b>${money(b.total)}</b></td><td>${b.status}</td></tr>`));
+let cs=document.getElementById("bCustomer"), oldC=cs.value;cs.innerHTML='<option value="">Select customer</option>'+customers.map(c=>`<option value="${c.id}">${esc(c.name)} (ID ${c.id})</option>`).join("");if(customers.some(c=>String(c.id)===oldC))cs.value=oldC;
+let rs=document.getElementById("bRoom"),oldR=rs.value;rs.innerHTML='<option value="">Select room</option>'+rooms.filter(r=>r.available).map(r=>`<option value="${r.no}">Room ${r.no} · ${r.type} · ${money(r.price)}/night</option>`).join("");if([...rs.options].some(o=>o.value===oldR))rs.value=oldR;
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+document.getElementById("customerForm").addEventListener("submit",e=>{e.preventDefault();let id=+cId.value,name=cName.value.trim(),phone=cPhone.value.trim(),email=cEmail.value.trim();if(customers.some(c=>c.id===id)){toast("Customer ID already exists.");return}customers.push({id,name,phone,email});save();e.target.reset();render();toast("Customer registered successfully!")});
+document.getElementById("bookingForm").addEventListener("submit",e=>{e.preventDefault();let id=+bId.value,c=customers.find(x=>x.id===+bCustomer.value),r=rooms.find(x=>x.no===+bRoom.value),days=+bDays.value;if(bookings.some(x=>x.id===id)){toast("Booking ID already exists.");return}if(!c||!r||!r.available||days<1){toast("Please check customer, room and duration.");return}let total=r.price*days;bookings.push({id,name:c.name,customerId:c.id,room:r.no,days,total,status:"Booked"});r.available=false;save();e.target.reset();document.getElementById("bDays").value=1;render();toast("Booking confirmed. Total: "+money(total));showPage("bookings")});
+document.getElementById("bRoom").addEventListener("change",estimate);document.getElementById("bDays").addEventListener("input",estimate);
+function estimate(){let r=rooms.find(x=>x.no===+document.getElementById("bRoom").value),d=+document.getElementById("bDays").value||0;document.getElementById("estimate").textContent=r&&d>0?`Estimated total: ${money(r.price*d)} (${money(r.price)} × ${d} day(s))`:"Select a room and duration to view the estimated bill."}
+function checkIn(id){let b=bookings.find(x=>x.id===id);if(b&&b.status==="Booked"){b.status="Checked In";save();render();toast("Guest checked in successfully.")}}
+function checkOut(id){let b=bookings.find(x=>x.id===id);if(b&&b.status==="Checked In"){b.status="Checked Out";let r=rooms.find(x=>x.no===b.room);if(r)r.available=true;save();render();toast("Checked out. Final bill: "+money(b.total))}}
+render();
+</script>
+<div id="loginOverlay" style="
+position:fixed; inset:0; background:#101b32;
+display:none; justify-content:center; align-items:center;
+z-index:9999; font-family:Arial;">
+  <div style="background:white;padding:35px;border-radius:15px;width:300px;">
+    <h2 style="text-align:center;">GrandStay Admin</h2>
+    <p>Username</p>
+    <input id="loginUser" placeholder="Enter username" style="width:100%;padding:10px;">
+    <p>Password</p>
+    <input id="loginPass" type="password" placeholder="Enter password" style="width:100%;padding:10px;">
+    <button onclick="loginAdmin()" style="width:100%;padding:12px;margin-top:20px;background:#c49a54;color:white;border:0;">
+      Login
+    </button>
+    <p id="loginError" style="color:red;"></p>
+  </div>
+</div>
+
+<script>
+function loginAdmin() {
+  const username = document.getElementById("loginUser").value;
+  const password = document.getElementById("loginPass").value;
+
+  if (username === "admin" && password === "1234") {
+    document.getElementById("loginOverlay").style.display = "none";
+    sessionStorage.setItem("hotelLoggedIn", "true");
+  } else {
+    document.getElementById("loginError").textContent = "Invalid username or password";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,3 +1,4 @@
-public class Billable {
-    
+
+public interface Billable {
+    double calculateBill();
 }
