@@ -93,13 +93,12 @@ if (!admin.login(username, password)) {
                         break;
 
                     case "4":
-                        hotel.showCustomers();
-                        break;
+    hotel.viewCustomers();
+    break;
 
-                    case "5":
-                        hotel.showBookings();
-                        break;
-
+case "5":
+    hotel.viewAllBookings();
+    break;
                     case "6":
                         System.out.print("Enter Booking ID: ");
                         int checkInId =

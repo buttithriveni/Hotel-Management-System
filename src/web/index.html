@@ -126,8 +126,12 @@ document.getElementById("bRoom").addEventListener("change",estimate);document.ge
 function estimate(){let r=rooms.find(x=>x.no===+document.getElementById("bRoom").value),d=+document.getElementById("bDays").value||0;document.getElementById("estimate").textContent=r&&d>0?`Estimated total: ${money(r.price*d)} (${money(r.price)} × ${d} day(s))`:"Select a room and duration to view the estimated bill."}
 function checkIn(id){let b=bookings.find(x=>x.id===id);if(b&&b.status==="Booked"){b.status="Checked In";save();render();toast("Guest checked in successfully.")}}
 function checkOut(id){let b=bookings.find(x=>x.id===id);if(b&&b.status==="Checked In"){b.status="Checked Out";let r=rooms.find(x=>x.no===b.room);if(r)r.available=true;save();render();toast("Checked out. Final bill: "+money(b.total))}}
+
+
+
 render();
 </script>
+
 <div id="loginOverlay" style="
 position:fixed; inset:0; background:#101b32;
 display:none; justify-content:center; align-items:center;
@@ -154,7 +158,8 @@ function loginAdmin() {
     document.getElementById("loginOverlay").style.display = "none";
     sessionStorage.setItem("hotelLoggedIn", "true");
   } else {
-    document.getElementById("loginError").textContent = "Invalid username or password";
+    document.getElementById("loginError").textContent =
+      "Invalid username or password";
   }
 }
 </script>
